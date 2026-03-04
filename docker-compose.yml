@@ -1,0 +1,12 @@
+version: '3'
+services:
+  amazon-backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+  amazon-frontend:
+    image: nginx:alpine
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "80:80"

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Clone</title>
+    <style>
+        .navbar { background: #131921; color: white; padding: 15px; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 5px; text-align: center; }
+        .card img { width: 150px; height: 150px; object-fit: contain; }
+        button { background: #ffd814; border: none; padding: 10px; cursor: pointer; border-radius: 20px; }
+    </style>
+</head>
+<body>
+    <div class="navbar"><h2>Amazon Clone</h2></div>
+    <div class="product-grid" id="products"></div>
+
+    <script>
+        // Unga EC2 IP-ah inga update pannunga
+        fetch('/https://13.51.170.241///api/products')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('products');
+                data.forEach(p => {
+                    container.innerHTML += `
+                        <div class="card">
+                            <img src="${p.image}" alt="${p.name}">
+                            <h3>${p.name}</h3>
+                            <p>$${p.price}</p>
+                            <button onclick="alert('Added to Cart!')">Add to Cart</button>
+                        </div>`;
+                });
+            });
+    </script>
+</body>
+</html>
